@@ -14,10 +14,12 @@ export default function Home() {
   // --------------------------------------------------------------------------------
 
   return (
-    <div className="component-wrapper">
-      <Badge value="Com #1" backgroundColor="#c51111" />
-      <Badge value="Com #2" />
-      <Badge value="Com #3" backgroundColor="#d2d2d2" />
+    <div className="container-wrapper">
+      <div className="container">
+        <Badge value="Com #1" backgroundColor="#c51111" />
+        <Badge value="Com #2" />
+        <Badge value="Com #3" backgroundColor="#d2d2d2" />
+      </div>
     </div>
   );
 }
