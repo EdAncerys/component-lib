@@ -9,8 +9,8 @@ import {
   Rating,
   TitleWrapper,
   Dot,
-  LoveButtonCircle,
   RatingIcon,
+  LoveButtonWrapper,
 } from './styles'
 import replacementImage from '../../assets/images/Rectangle 22766.png'
 import loveIcon from '../../assets/icons/loveIcon.svg'
@@ -25,6 +25,7 @@ export const Card = ({
   className,
   children = 'Card title',
   cardPrice,
+  PriceDividedBy,
   distance,
   rating = 0,
   ratingCount = 0,
@@ -37,7 +38,7 @@ export const Card = ({
 
   return (
     <>
-      <ImageWrapper>
+      <ImageWrapper height={height} width={width}>
         <NextImage
           src={imageSrc}
           height={height}
@@ -45,23 +46,25 @@ export const Card = ({
           alt='Picture of the author'
         />
         <div onClick={() => handleLoveButton()}>
-          <LoveButtonCircle></LoveButtonCircle>
-          {isLoved ? (
-            <LoveButton src={loveIcon} alt='Default' />
-          ) : (
-            <LoveButton src={loveIconRed} alt='Liked' />
-          )}
+          <LoveButtonWrapper>
+            {isLoved ? (
+              <LoveButton src={loveIcon} alt='Default' />
+            ) : (
+              <LoveButton src={loveIconRed} alt='Liked' />
+            )}
+          </LoveButtonWrapper>
         </div>
       </ImageWrapper>
       <CardTitle>{children}</CardTitle>
       <TitleWrapper>
-        <Price> {cardPrice} </Price>
+        <Price>
+          {cardPrice} / {PriceDividedBy}
+        </Price>
         <Dot></Dot>
         <Distance>{distance} </Distance>
         <Dot></Dot>
-        <RatingIcon src={ratingIcon} alt='rating' />
         <Rating>
-          {rating} ({ratingCount})
+          <RatingIcon src={ratingIcon} alt='rating' /> {rating} ({ratingCount})
         </Rating>
       </TitleWrapper>
     </>

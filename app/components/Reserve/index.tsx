@@ -1,45 +1,109 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
+  Charge,
+  Date,
+  DateInput,
+  DateInputTitle,
   Day,
+  Horizontal,
   InputFlex,
   InputWrapper,
+  MessageButton,
+  MessageButtonDiv,
+  Name,
+  NameDateWrapper,
   Price,
   PriceWrapper,
+  ProfilePic,
+  ProfileWrapper,
   Rating,
-  RentFrom,
-  RentFromInput,
+  RatingIcon,
+  RentedBy,
   ReserveButton,
-  Till,
-  TillInput,
   Wrapper,
   WrapperTop,
 } from './styles'
-
-export const Reverse = () => {
+import ratingIcon from '../../assets/icons/rating.svg'
+import { ReserveProps } from './reserveInterface'
+export const Reserve = ({
+  reservePrice,
+  reserveDay,
+  rentedByImage,
+  rentedByName,
+  rentedByJoined,
+  rating,
+  ratingCount,
+  height = 560,
+  width = 554,
+  fromDate,
+  setFromDate,
+  tillDate,
+  setTillDate,
+  handleReserveData,
+}: ReserveProps) => {
   return (
     <>
-      <Wrapper>
+      <Wrapper height={height} width={width}>
         <WrapperTop>
           <PriceWrapper>
-            <Price>$23/</Price>
-            <Day>day</Day>
+            <Price>{reservePrice}</Price>
+            <span>/</span>
+            <Day>{reserveDay}</Day>
           </PriceWrapper>
-          <Rating>4.9(23)</Rating>
+
+          <Rating>
+            <RatingIcon src={ratingIcon} alt='rating' /> {rating} ({ratingCount}
+            )
+          </Rating>
         </WrapperTop>
         <InputWrapper>
           <InputFlex>
-            <RentFrom>Rent from</RentFrom>
-            <RentFromInput placeholder='11/15/2022'></RentFromInput>
+            <DateInputTitle>Rent from</DateInputTitle>
+            <DateInput
+              pattern='\d{2}/\d{2}/\d{4}'
+              placeholder={tillDate}
+              required
+              onChange={(event) =>
+                setFromDate && setFromDate(event.target.value)
+              }
+            ></DateInput>
           </InputFlex>
           <InputFlex>
-            <Till>Till</Till>
-            <TillInput placeholder='11/15/2022'></TillInput>
+            <DateInputTitle>Till</DateInputTitle>
+            <DateInput
+              pattern='\d{2}/\d{2}/\d{4}'
+              placeholder={tillDate}
+              required
+              onChange={(event) =>
+                setTillDate && setTillDate(event.target.value)
+              }
+            ></DateInput>
           </InputFlex>
         </InputWrapper>
-        <ReserveButton>Reserve</ReserveButton>
+        <ReserveButton
+          onClick={() =>
+            handleReserveData &&
+            handleReserveData(fromDate as string, tillDate as string)
+          }
+        >
+          Reserve
+        </ReserveButton>
+        <Charge>You wont be chared yet</Charge>
+        <Horizontal></Horizontal>
+        <RentedBy>Rented by</RentedBy>
+        <ProfileWrapper>
+          <ProfilePic src={rentedByImage} alt='ProfilePic'></ProfilePic>
+          <NameDateWrapper>
+            <Name>{rentedByName}</Name>
+            <Date>Joined in {rentedByJoined}</Date>
+          </NameDateWrapper>
+          <MessageButtonDiv>
+            <MessageButton>Message</MessageButton>
+          </MessageButtonDiv>
+        </ProfileWrapper>
       </Wrapper>
     </>
   )
 }
 
-export default Reverse
+export default Reserve
