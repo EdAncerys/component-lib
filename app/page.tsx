@@ -16,6 +16,8 @@ export default function Home() {
   // This page is client-side only, so we can use React Hooks.
   // --------------------------------------------------------------------------------
 
+  //Added All to the dev branch
+
   const navList = [
     { slug: '/home', title: 'Home' },
     { slug: '/browse', title: 'Browse' },
