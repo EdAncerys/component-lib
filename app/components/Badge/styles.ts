@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-import { BadgeProps } from '.';
+import styled from "@emotion/styled";
+import { BadgeProps } from "./interface";
 
 export const Wrapper = styled.div<BadgeProps>`
   display: flex;
@@ -11,8 +11,7 @@ export const Wrapper = styled.div<BadgeProps>`
   width: fit-content;
   min-width: fit-content;
   border-radius: 12px;
-  background-color: ${({ backgroundColor }) =>
-    backgroundColor || '#222'};
+  background-color: ${({ backgroundColor }) => backgroundColor || "#222"};
   text-transform: ${({ textTransform }) => textTransform};
   letter-spacing: 0.5px;
   user-select: none;
