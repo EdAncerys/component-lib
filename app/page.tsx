@@ -45,6 +45,9 @@ export default function Home() {
     <div className='container-wrapper'>
       <div className='container'>
         <Badge value='Com #1' backgroundColor='#c51111' />
+        <Header navList={navList} setSearchResult={setSearchResult}>
+          Rentables
+        </Header>
         <Badge value='Com #2' />
         <Card
           imageSrc={myImage}
@@ -74,11 +77,6 @@ export default function Home() {
           setTillDate={setTillDate}
           handleReserveData={handleReserveData}
         />
-        <Header navList={navList} setSearchResult={setSearchResult}>
-          Rentables
-        </Header>
-        <Badge value='Com #2' />
-        <Badge value='Com #3' backgroundColor='#d2d2d2' />
       </div>
     </div>
   )
