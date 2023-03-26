@@ -19,13 +19,14 @@ export const CardSliderWrapper = styled.div`
 export const SliderCaptionWrapper = styled.div`
   color: black;
   background-color: white;
-  width: 23em;
+  width: 25em;
   height: 40em;
+  padding-top: 10em;
   padding-left: 1em;
   position: absolute;
   z-index: 10;
+  left: -1em;
   display: block;
-  padding-top: 10em;
 `
 
 export const SliderHeader = styled.h2`
@@ -86,7 +87,11 @@ export const SliderWrapper = styled.div`
   padding: 1%;
 `
 
-export const SliderCardsWrapper = styled.div`
+interface SliderCardsWrapperType {
+  currentSlide: number
+}
+
+export const SliderCardsWrapper = styled.div<SliderCardsWrapperType>`
   display: flex;
   gap: 0.5em;
   margin-left: 28em;
@@ -94,6 +99,19 @@ export const SliderCardsWrapper = styled.div`
   justify-content: flex-start;
   width: 15em;
   height: 35em;
+
+  > div:nth-child(1) {
+    display: ${({ currentSlide }) => (currentSlide === 1 ? 'none' : 'block')};
+  }
+
+  > div:nth-child(2) {
+    display: ${({ currentSlide }) => (currentSlide === 2 ? 'none' : 'block')};
+  }
+
+  ${({ currentSlide }) =>
+    currentSlide === 2
+      ? ' > div:nth-child(1), > div:nth-child(2) {display: none}'
+      : ''}
 `
 
 export const SliderText = styled.p`

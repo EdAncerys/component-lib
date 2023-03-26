@@ -41,7 +41,15 @@ const CardSlider: React.FC<CardSliderProps> = ({
     setCurrentSlide(newIndex)
   }
 
-  console.log('currenet slide', currentSlide)
+  const sliderTranslate = (value: number) => {
+    if (value === 0) {
+      return 0
+    } else if (value === 1) {
+      return 0
+    } else if (value === 2) {
+      return 5
+    }
+  }
 
   return (
     <Container>
@@ -77,23 +85,26 @@ const CardSlider: React.FC<CardSliderProps> = ({
 
         <SliderCardsWrapper
           style={{
-            transform: `translateX(-${currentSlide * 200}%)`,
+            transform: `translateX(-${sliderTranslate(currentSlide)}%)`,
             transition: 'transform 0.5s ease',
             zIndex: 1,
           }}
+          currentSlide={currentSlide}
         >
-          {slideImages.map((slide, index) => (
-            <SingleCard
-              key={index}
-              slideNo={currentSlide}
-              src={slide.image}
-              alt={`Slide ${index}`}
-              userName={slide.userName}
-              textTitle={slide.textTitle}
-              description={slide.description}
-              className='slider-image'
-            />
-          ))}
+          {slideImages.map((slide, index) => {
+            return (
+              <SingleCard
+                key={index}
+                slideNo={currentSlide}
+                src={slide.image}
+                alt={`Slide ${index}`}
+                userName={slide.userName}
+                textTitle={slide.textTitle}
+                description={slide.description}
+                className='slider-image'
+              />
+            )
+          })}
         </SliderCardsWrapper>
       </CardSliderWrapper>
     </Container>
