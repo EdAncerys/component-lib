@@ -18,6 +18,8 @@ import { useState } from 'react'
 import { SearchResult } from './components/Header/headerInterface'
 import CardSlider from './components/CardSlider'
 import { SlideImageInterface } from './components/CardSlider/interface'
+import BarChart from './components/BarChart'
+import PieChart from './components/PieChart'
 
 export default function Home() {
   // --------------------------------------------------------------------------------
@@ -73,6 +75,52 @@ export default function Home() {
     },
   ]
 
+  // Bar Chart Data
+  const [activeTab, setActiveTab] = useState(1)
+  const barChartData: string[] = [
+    '$12,000',
+    '$15,000',
+    '$18,000',
+    '$17,000',
+    '$10,000',
+    '$24,000',
+    '$13,000',
+    '$11,000',
+    '$10,000',
+    '$21,000',
+    '$19,000',
+    '$10,000',
+  ]
+
+  const barLabels: string[] = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'APR',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ]
+
+  // Pie chart Data
+  const data = {
+    labels: ['Product 1', 'Product 2', 'Product 3'],
+    datasets: [
+      {
+        label: 'Top Performers',
+        data: [12, 19, 3],
+        backgroundColor: ['#FF4F4F', '#4A42D6', '#22C55E'],
+        borderWidth: 1,
+        hoverOffset: 4,
+      },
+    ],
+  }
+
   return (
     <div className='container-wrapper'>
       <div className='container'>
@@ -94,6 +142,13 @@ export default function Home() {
         <Badge value='Com #3' backgroundColor='#d2d2d2' />
         <CardSlider ratingCount={4.9} slideImages={slideImageList}></CardSlider>
         <Badge value='Com #4' backgroundColor='#d2d2d2' />
+        <BarChart
+          barChartData={barChartData}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          barLabels={barLabels}
+        ></BarChart>
+        <PieChart data={data}></PieChart>
         <Badge value='Com #5' backgroundColor='#d2d2d2' />
         <Reserve
           reservePrice={'$23'}
