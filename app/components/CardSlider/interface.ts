@@ -8,10 +8,17 @@ export interface CardSliderProps {
 export interface SlideImageInterface {
   id: number
   image: StaticImageData
+  userName: string
+  textTitle: string
+  description: string
 }
 
 export interface SingleCard {
-  src: StaticImageData
-  alt: string
-  className: string
+  slideNo?: number
+  src?: StaticImageData
+  alt?: string
+  userName?: string
+  textTitle?: string
+  description?: string
+  className?: string
 }

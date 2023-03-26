@@ -4,19 +4,28 @@ import Image from 'next/image'
 export const Container = styled.div`
   display: block;
   overflow-x: visible;
+  position: relative;
+  margin: 2em 0;
 `
 
 export const CardSliderWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 2em;
+  background-color: white;
+  gap: 1em;
   align-items: center;
 `
 
 export const SliderCaptionWrapper = styled.div`
   color: black;
-  width: auto;
+  background-color: white;
+  width: 23em;
+  height: 40em;
   padding-left: 1em;
+  position: absolute;
+  z-index: 10;
+  display: block;
+  padding-top: 10em;
 `
 
 export const SliderHeader = styled.h2`
@@ -68,7 +77,8 @@ export const SliderButton = styled.button`
   cursor: pointer;
   transition: background-color 0.2s ease;
 `
-export const PreviousButtonImage = styled(Image)``
+export const SliderControlImage = styled(Image)``
+
 export const SliderWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -78,10 +88,11 @@ export const SliderWrapper = styled.div`
 
 export const SliderCardsWrapper = styled.div`
   display: flex;
-  gap: 1em;
+  gap: 0.5em;
+  margin-left: 28em;
   align-items: center;
   justify-content: flex-start;
-  width: 40em;
+  width: 15em;
   height: 35em;
 `
 
@@ -90,7 +101,7 @@ export const SliderText = styled.p`
   font-size: 20px;
   position: absolute;
   top: 62%;
-  left: 8%;
+  left: 6%;
   background-color: white;
   border-radius: 5px;
   width: 462px;

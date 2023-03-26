@@ -9,14 +9,21 @@ import {
   SliderWrapper,
 } from './styles'
 
-const SingleCard = ({ src, alt }: SingleCard) => {
+const SingleCard = ({
+  slideNo,
+  src,
+  alt,
+  userName = 'Amanda Cooper',
+  textTitle,
+  description,
+  className,
+}: SingleCard) => {
   return (
     <SliderWrapper>
       <SliderText>
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem usantium
-        dolor ed ut perspiciatis unde omnis iste{' '}
-        <SliderName>Amanda Cooper</SliderName>
-        <SliderDesignation>Director at Slack Inc.</SliderDesignation>
+        {description}
+        <SliderName>{userName}</SliderName>
+        <SliderDesignation>{textTitle}</SliderDesignation>
       </SliderText>
       <SliderImage src={src} alt={alt} className='slider-image' />
     </SliderWrapper>

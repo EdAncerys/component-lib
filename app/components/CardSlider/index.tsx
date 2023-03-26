@@ -5,7 +5,6 @@ import leftArrow from '../../assets/icons/arrow-narrow-left.svg'
 import rightArrow from '../../assets/icons/arrow-narrow-right.svg'
 import {
   Container,
-  PreviousButtonImage,
   SliderButton,
   SliderButtons,
   SliderImage,
@@ -17,6 +16,7 @@ import {
   SliderRatingTextWrapper,
   SliderRatingText,
   SliderRatingWrapper,
+  SliderControlImage,
 } from './styles'
 import SingleCard from './SingleCard'
 import Rating from './Rating'
@@ -41,6 +41,8 @@ const CardSlider: React.FC<CardSliderProps> = ({
     setCurrentSlide(newIndex)
   }
 
+  console.log('currenet slide', currentSlide)
+
   return (
     <Container>
       <CardSliderWrapper>
@@ -64,39 +66,34 @@ const CardSlider: React.FC<CardSliderProps> = ({
 
           <SliderButtons>
             <SliderButton onClick={previousSlide}>
-              <PreviousButtonImage src={leftArrow} alt='previous' />
+              <SliderControlImage src={leftArrow} alt='previous' />
             </SliderButton>
 
             <SliderButton onClick={nextSlide}>
-              <PreviousButtonImage src={rightArrow} alt='next' />
+              <SliderControlImage src={rightArrow} alt='next' />
             </SliderButton>
           </SliderButtons>
         </SliderCaptionWrapper>
 
-        <SliderCardsWrapper>
-          <SingleCard
-            src={
-              slideImages[
-                currentSlide === 0 ? slideImages.length - 1 : currentSlide - 1
-              ].image
-            }
-            alt={`Slide ${currentSlide}`}
-            className='slider-image'
-          />
-          <SingleCard
-            src={slideImages[currentSlide].image}
-            alt={`Slide ${currentSlide + 1}`}
-            className='slider-image'
-          />
-          <SingleCard
-            src={
-              slideImages[
-                currentSlide === slideImages.length - 1 ? 0 : currentSlide + 1
-              ].image
-            }
-            alt={`Slide ${currentSlide + 2}`}
-            className='slider-image'
-          />
+        <SliderCardsWrapper
+          style={{
+            transform: `translateX(-${currentSlide * 200}%)`,
+            transition: 'transform 0.5s ease',
+            zIndex: 1,
+          }}
+        >
+          {slideImages.map((slide, index) => (
+            <SingleCard
+              key={index}
+              slideNo={currentSlide}
+              src={slide.image}
+              alt={`Slide ${index}`}
+              userName={slide.userName}
+              textTitle={slide.textTitle}
+              description={slide.description}
+              className='slider-image'
+            />
+          ))}
         </SliderCardsWrapper>
       </CardSliderWrapper>
     </Container>

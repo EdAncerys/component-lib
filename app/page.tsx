@@ -50,14 +50,26 @@ export default function Home() {
     {
       id: 1,
       image: slider1,
+      userName: 'Amy Cooper',
+      textTitle: 'Director at Slack Inc.',
+      description:
+        'Sed ut perspiciatis unde omnis iste natus error sit voluptatem usantium dolor ed ut perspiciatis unde omnis iste',
     },
     {
       id: 2,
       image: slider2,
+      userName: 'Amy Cooper2',
+      textTitle: 'Director at Slack Inc.',
+      description:
+        'Sed ut perspiciatis unde omnis iste natus error sit voluptatem usantium dolor ed ut perspiciatis unde omnis iste',
     },
     {
       id: 3,
       image: slider3,
+      userName: 'Amy Cooper3',
+      textTitle: 'Director at Slack Inc.',
+      description:
+        'Sed ut perspiciatis unde omnis iste natus error sit voluptatem usantium dolor ed ut perspiciatis unde omnis iste',
     },
   ]
 
