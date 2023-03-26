@@ -14,11 +14,11 @@ export interface SlideImageInterface {
 }
 
 export interface SingleCard {
-  slideNo?: number
-  src?: StaticImageData
-  alt?: string
-  userName?: string
-  textTitle?: string
-  description?: string
-  className?: string
+  slideNo: number
+  src: StaticImageData
+  alt: string
+  userName: string
+  textTitle: string
+  description: string
+  className: string
 }
