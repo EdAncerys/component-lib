@@ -2,6 +2,9 @@
 
 import './page.css'
 import ProfilePic from './assets/images/ProfilePic.png'
+import slider1 from './assets/images/slider1.png'
+import slider2 from './assets/images/slider2.png'
+import slider3 from './assets/images/slider3.png'
 
 // --------------------------------------------------------------------------------
 // 📌  Component Imports
@@ -13,6 +16,8 @@ import myImage from '../app/assets/images/Rectangle 22766.png'
 import Header from './components/Header'
 import { useState } from 'react'
 import { SearchResult } from './components/Header/headerInterface'
+import CardSlider from './components/CardSlider'
+import { SlideImageInterface } from './components/CardSlider/interface'
 
 export default function Home() {
   // --------------------------------------------------------------------------------
@@ -26,8 +31,6 @@ export default function Home() {
     console.log('From', fromDate, 'Till', tillDate)
   }
 
-  //Added All to the dev branch
-
   const navList = [
     { slug: '/home', title: 'Home' },
     { slug: '/browse', title: 'Browse' },
@@ -40,6 +43,23 @@ export default function Home() {
   })
 
   console.log('SEARCH RESULT', searchResult)
+
+  // slider images for prop
+
+  const slideImageList: SlideImageInterface[] = [
+    {
+      id: 1,
+      image: slider1,
+    },
+    {
+      id: 2,
+      image: slider2,
+    },
+    {
+      id: 3,
+      image: slider3,
+    },
+  ]
 
   return (
     <div className='container-wrapper'>
@@ -59,8 +79,8 @@ export default function Home() {
         >
           Best Dslr canon 100d camera
         </Card>
-
         <Badge value='Com #3' backgroundColor='#d2d2d2' />
+        <CardSlider ratingCount={4.9} slideImages={slideImageList}></CardSlider>
         <Badge value='Com #4' backgroundColor='#d2d2d2' />
         <Badge value='Com #5' backgroundColor='#d2d2d2' />
         <Reserve
