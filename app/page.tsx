@@ -2,6 +2,9 @@
 
 import './page.css'
 import ProfilePic from './assets/images/ProfilePic.png'
+import slider1 from './assets/images/slider1.png'
+import slider2 from './assets/images/slider2.png'
+import slider3 from './assets/images/slider3.png'
 
 // --------------------------------------------------------------------------------
 // 📌  Component Imports
@@ -13,6 +16,10 @@ import myImage from '../app/assets/images/Rectangle 22766.png'
 import Header from './components/Header'
 import { useState } from 'react'
 import { SearchResult } from './components/Header/headerInterface'
+import CardSlider from './components/CardSlider'
+import { SlideImageInterface } from './components/CardSlider/interface'
+import BarChart from './components/BarChart'
+import PieChart from './components/PieChart'
 
 export default function Home() {
   // --------------------------------------------------------------------------------
@@ -26,8 +33,6 @@ export default function Home() {
     console.log('From', fromDate, 'Till', tillDate)
   }
 
-  //Added All to the dev branch
-
   const navList = [
     { slug: '/home', title: 'Home' },
     { slug: '/browse', title: 'Browse' },
@@ -40,6 +45,81 @@ export default function Home() {
   })
 
   console.log('SEARCH RESULT', searchResult)
+
+  // slider images for prop
+
+  const slideImageList: SlideImageInterface[] = [
+    {
+      id: 1,
+      image: slider1,
+      userName: 'Amy Cooper',
+      textTitle: 'Director at Slack Inc.',
+      description:
+        'Sed ut perspiciatis unde omnis iste natus error sit voluptatem usantium dolor ed ut perspiciatis unde omnis iste',
+    },
+    {
+      id: 2,
+      image: slider2,
+      userName: 'Amy Cooper2',
+      textTitle: 'Director at Slack Inc.',
+      description:
+        'Sed ut perspiciatis unde omnis iste natus error sit voluptatem usantium dolor ed ut perspiciatis unde omnis iste',
+    },
+    {
+      id: 3,
+      image: slider3,
+      userName: 'Amy Cooper3',
+      textTitle: 'Director at Slack Inc.',
+      description:
+        'Sed ut perspiciatis unde omnis iste natus error sit voluptatem usantium dolor ed ut perspiciatis unde omnis iste',
+    },
+  ]
+
+  // Bar Chart Data
+  const [activeTab, setActiveTab] = useState(1)
+  const barChartData: string[] = [
+    '$12,000',
+    '$15,000',
+    '$18,000',
+    '$17,000',
+    '$10,000',
+    '$24,000',
+    '$13,000',
+    '$11,000',
+    '$10,000',
+    '$21,000',
+    '$19,000',
+    '$10,000',
+  ]
+
+  const barLabels: string[] = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'APR',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ]
+
+  // Pie chart Data
+  const data = {
+    labels: ['Product 1', 'Product 2', 'Product 3'],
+    datasets: [
+      {
+        label: 'Top Performers',
+        data: [12, 19, 3],
+        backgroundColor: ['#FF4F4F', '#4A42D6', '#22C55E'],
+        borderWidth: 1,
+        hoverOffset: 4,
+      },
+    ],
+  }
 
   return (
     <div className='container-wrapper'>
@@ -59,9 +139,16 @@ export default function Home() {
         >
           Best Dslr canon 100d camera
         </Card>
-
         <Badge value='Com #3' backgroundColor='#d2d2d2' />
+        <CardSlider ratingCount={4.9} slideImages={slideImageList}></CardSlider>
         <Badge value='Com #4' backgroundColor='#d2d2d2' />
+        <BarChart
+          barChartData={barChartData}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          barLabels={barLabels}
+        ></BarChart>
+        <PieChart data={data}></PieChart>
         <Badge value='Com #5' backgroundColor='#d2d2d2' />
         <Reserve
           reservePrice={'$23'}

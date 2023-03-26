@@ -22,7 +22,6 @@ export const Card = ({
   imageSrc = replacementImage,
   height = 275,
   width = 415,
-  className,
   children = 'Card title',
   cardPrice,
   PriceDividedBy,
