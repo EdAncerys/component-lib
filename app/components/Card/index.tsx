@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import {
   ImageWrapper,
   NextImage,
@@ -11,50 +11,54 @@ import {
   Dot,
   RatingIcon,
   LoveButtonWrapper,
-} from './styles'
-import replacementImage from '../../assets/images/Rectangle 22766.png'
-import loveIcon from '../../assets/icons/loveIcon.svg'
-import loveIconRed from '../../assets/icons/loveIconRed.svg'
-import ratingIcon from '../../assets/icons/rating.svg'
-import { CardProps } from './cardInterface'
+  CardWrapper,
+} from "./styles";
+import replacementImage from "../../assets/images/Rectangle 22766.png";
+import loveIcon from "../../assets/icons/loveIcon.svg";
+import loveIconRed from "../../assets/icons/loveIconRed.svg";
+import ratingIcon from "../../assets/icons/rating.svg";
+import { CardProps } from "./cardInterface";
 
 export const Card = ({
+  handleCardClick,
   imageSrc = replacementImage,
   height = 275,
   width = 415,
-  children = 'Card title',
+  children = "Card title",
   cardPrice,
   PriceDividedBy,
   distance,
   rating = 0,
   ratingCount = 0,
 }: CardProps) => {
-  const [isLoved, setIsLoved] = useState(true)
+  const [isLoved, setIsLoved] = useState(true);
 
   const handleLoveButton = () => {
-    !isLoved ? setIsLoved(true) : setIsLoved(false)
-  }
+    !isLoved ? setIsLoved(true) : setIsLoved(false);
+  };
 
   return (
-    <>
+    <CardWrapper height={height} width={width} onClick={handleCardClick}>
       <ImageWrapper height={height} width={width}>
         <NextImage
           src={imageSrc}
           height={height}
           width={width}
-          alt='Picture of the author'
+          alt="Picture of the author"
         />
         <div onClick={() => handleLoveButton()}>
           <LoveButtonWrapper>
             {isLoved ? (
-              <LoveButton src={loveIcon} alt='Default' />
+              <LoveButton src={loveIcon} alt="Default" />
             ) : (
-              <LoveButton src={loveIconRed} alt='Liked' />
+              <LoveButton src={loveIconRed} alt="Liked" />
             )}
           </LoveButtonWrapper>
         </div>
       </ImageWrapper>
-      <CardTitle>{children}</CardTitle>
+      <CardTitle>
+        {children.length > 35 ? children.substring(0, 35) + "..." : children}
+      </CardTitle>
       <TitleWrapper>
         <Price>
           {cardPrice} / {PriceDividedBy}
@@ -63,9 +67,9 @@ export const Card = ({
         <Distance>{distance} </Distance>
         <Dot></Dot>
         <Rating>
-          <RatingIcon src={ratingIcon} alt='rating' /> {rating} ({ratingCount})
+          <RatingIcon src={ratingIcon} alt="rating" /> {rating} ({ratingCount})
         </Rating>
       </TitleWrapper>
-    </>
-  )
-}
+    </CardWrapper>
+  );
+};

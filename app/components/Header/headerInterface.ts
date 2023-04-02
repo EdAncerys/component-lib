@@ -9,8 +9,16 @@ export interface HeaderInterface {
   navList: NavListProps[];
   backgroundColor?: string;
   className?: string;
-  children?: string;
+  children: string;
+  options: string[];
+  inputValue: string;
+  setInputValue: (value: string) => void;
+  dropdownOpen: boolean;
+  selectedCategory: string | null;
   setSearchResult: (searchData: SearchResult) => void;
+  handleOptionClick: (option: string) => void;
+  handleKeyPress: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+  handleDropdownClick: () => void;
 }
 
 export interface SearchResult {
@@ -19,5 +27,13 @@ export interface SearchResult {
 }
 
 export interface SearchBarProps {
+  options: string[];
+  inputValue: string;
+  setInputValue: (value: string) => void;
+  dropdownOpen: boolean;
+  selectedCategory: string | null;
+  handleDropdownClick: () => void;
   setSearchResult: (searchData: SearchResult) => void;
+  handleOptionClick: (option: string) => void;
+  handleKeyPress: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 }

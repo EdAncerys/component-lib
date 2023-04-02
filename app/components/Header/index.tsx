@@ -15,6 +15,14 @@ import {
 const Header = ({
   setSearchResult,
   navList,
+  options,
+  inputValue,
+  setInputValue,
+  dropdownOpen,
+  selectedCategory,
+  handleDropdownClick,
+  handleOptionClick,
+  handleKeyPress,
   children = "Brand Name",
 }: // ...props
 HeaderInterface) => {
@@ -25,7 +33,17 @@ HeaderInterface) => {
   return (
     <HeaderWrapper>
       <HeaderTitle>{children}</HeaderTitle>
-      <SearchBar setSearchResult={setSearchResult} />
+      <SearchBar
+        setSearchResult={setSearchResult}
+        options={options}
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        dropdownOpen={dropdownOpen}
+        selectedCategory={selectedCategory}
+        handleDropdownClick={handleDropdownClick}
+        handleOptionClick={handleOptionClick}
+        handleKeyPress={handleKeyPress}
+      />
 
       <NavBar>
         <NavListWrapper>

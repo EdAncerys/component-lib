@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import {
   Charge,
   Date,
@@ -11,7 +11,7 @@ import {
   MessageButton,
   MessageButtonDiv,
   Name,
-  NameDateWrapper,
+  ProfileNameWrapper,
   Price,
   PriceWrapper,
   ProfilePic,
@@ -22,9 +22,11 @@ import {
   ReserveButton,
   Wrapper,
   WrapperTop,
-} from './styles'
-import ratingIcon from '../../assets/icons/rating.svg'
-import { ReserveProps } from './reserveInterface'
+  PriceSpan,
+  FromWrapper,
+} from "./styles";
+import ratingIcon from "../../assets/icons/rating.svg";
+import { ReserveProps } from "./reserveInterface";
 export const Reserve = ({
   reservePrice,
   reserveDay,
@@ -41,69 +43,75 @@ export const Reserve = ({
   setTillDate,
   handleReserveData,
 }: ReserveProps) => {
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    handleReserveData &&
+      handleReserveData(fromDate as string, tillDate as string);
+    if (event.target) {
+      event.target.reset();
+    }
+  };
+
   return (
     <>
       <Wrapper height={height} width={width}>
         <WrapperTop>
           <PriceWrapper>
             <Price>{reservePrice}</Price>
-            <span>/</span>
+            <PriceSpan>/</PriceSpan>
             <Day>{reserveDay}</Day>
           </PriceWrapper>
 
           <Rating>
-            <RatingIcon src={ratingIcon} alt='rating' /> {rating} ({ratingCount}
+            <RatingIcon src={ratingIcon} alt="rating" /> {rating} ({ratingCount}
             )
           </Rating>
         </WrapperTop>
-        <InputWrapper>
-          <InputFlex>
-            <DateInputTitle>Rent from</DateInputTitle>
-            <DateInput
-              pattern='\d{2}/\d{2}/\d{4}'
-              placeholder={tillDate}
-              required
-              onChange={(event) =>
-                setFromDate && setFromDate(event.target.value)
-              }
-            ></DateInput>
-          </InputFlex>
-          <InputFlex>
-            <DateInputTitle>Till</DateInputTitle>
-            <DateInput
-              pattern='\d{2}/\d{2}/\d{4}'
-              placeholder={tillDate}
-              required
-              onChange={(event) =>
-                setTillDate && setTillDate(event.target.value)
-              }
-            ></DateInput>
-          </InputFlex>
-        </InputWrapper>
-        <ReserveButton
-          onClick={() =>
-            handleReserveData &&
-            handleReserveData(fromDate as string, tillDate as string)
-          }
-        >
-          Reserve
-        </ReserveButton>
+        <FromWrapper onSubmit={handleSubmit}>
+          <InputWrapper>
+            <InputFlex>
+              <DateInputTitle>Rent from</DateInputTitle>
+              <DateInput
+                type="date"
+                pattern="\d{2}/\d{2}/\d{4}"
+                placeholder={fromDate}
+                required
+                onChange={(event) =>
+                  setFromDate && setFromDate(event.target.value)
+                }
+              ></DateInput>
+            </InputFlex>
+            <InputFlex>
+              <DateInputTitle>Till</DateInputTitle>
+              <DateInput
+                type="date"
+                pattern="\d{2}/\d{2}/\d{4}"
+                placeholder={tillDate}
+                required
+                onChange={(event) =>
+                  setTillDate && setTillDate(event.target.value)
+                }
+              ></DateInput>
+            </InputFlex>
+          </InputWrapper>
+          <ReserveButton type="submit">Reserve</ReserveButton>
+        </FromWrapper>
         <Charge>You wont be chared yet</Charge>
         <Horizontal></Horizontal>
         <RentedBy>Rented by</RentedBy>
         <ProfileWrapper>
-          <ProfilePic src={rentedByImage} alt='ProfilePic'></ProfilePic>
-          <NameDateWrapper>
+          <ProfilePic src={rentedByImage} alt="ProfilePic"></ProfilePic>
+          <ProfileNameWrapper>
             <Name>{rentedByName}</Name>
             <Date>Joined in {rentedByJoined}</Date>
-          </NameDateWrapper>
+          </ProfileNameWrapper>
           <MessageButtonDiv>
             <MessageButton>Message</MessageButton>
           </MessageButtonDiv>
         </ProfileWrapper>
       </Wrapper>
     </>
-  )
-}
+  );
+};
 
-export default Reserve
+export default Reserve;
