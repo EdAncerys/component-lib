@@ -77,7 +77,7 @@ const BarChart = ({
         borderWidth: 0.5,
         barPercentage: 1,
         categoryPercentage: 1,
-        barThickness: 35,
+        barThickness: 25,
         maxBarThickness: 40,
         minBarThickness: 30,
         tension: 0.1,
@@ -87,7 +87,7 @@ const BarChart = ({
 
   const chartRef = useRef<ChartJS<'bar', number[], string> | null>(null)
   const handleExport = () => {
-    console.log('Test')
+    console.log('Preparing PDF')
     const chartCanvas = chartRef.current?.ctx.canvas as HTMLCanvasElement
     const imgData = chartCanvas.toDataURL('image/png' as any)
     const pdf = new jsPDF()
