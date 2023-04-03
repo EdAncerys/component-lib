@@ -24,7 +24,7 @@ const SingleCard = ({
           <SliderName>{userName}</SliderName>
           <SliderDesignation>{textTitle}</SliderDesignation>
         </SliderText>
-        <SliderImage src={src} alt={alt} className='slider-image' />
+        <SliderImage src={src} alt={alt} />
       </SliderWrapper>
     </>
   )
