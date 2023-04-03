@@ -20,5 +20,4 @@ export interface SingleCard {
   userName: string
   textTitle: string
   description: string
-  className: string
 }

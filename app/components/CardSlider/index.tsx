@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import leftArrow from "../../assets/icons/arrow-narrow-left.svg";
-import rightArrow from "../../assets/icons/arrow-narrow-right.svg";
+import React, { useState } from 'react'
+import leftArrow from '../../assets/icons/arrow-narrow-left.svg'
+import rightArrow from '../../assets/icons/arrow-narrow-right.svg'
 import {
   Container,
   SliderButton,
@@ -14,31 +14,41 @@ import {
   SliderRatingText,
   SliderRatingWrapper,
   SliderControlImage,
-} from "./styles";
-import SingleCard from "./SingleCard";
-import Rating from "./Rating";
-import { CardSliderProps } from "./interface";
+} from './styles'
+import SingleCard from './SingleCard'
+import Rating from './Rating'
+import { CardSliderProps } from './interface'
 
 const CardSlider: React.FC<CardSliderProps> = ({
   ratingCount,
   slideImages,
 }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const ratingAmount = ratingCount;
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [cardSliderImages, setCardSliderImages] = useState(slideImages)
+  const ratingAmount = ratingCount
 
   const previousSlide = () => {
+    const rotatedImages = [
+      cardSliderImages[cardSliderImages.length - 1],
+      ...cardSliderImages.slice(0, -1),
+    ]
+
     const newIndex =
-      currentSlide === 0 ? slideImages.length - 1 : currentSlide - 1;
-    setCurrentSlide(newIndex);
-  };
+      currentSlide === 0 ? cardSliderImages.length - 1 : currentSlide - 1
+
+    setCurrentSlide(newIndex)
+    setCardSliderImages(rotatedImages)
+  }
 
   const nextSlide = () => {
-    const newIndex =
-      currentSlide === slideImages.length - 1 ? 0 : currentSlide + 1;
-    setCurrentSlide(newIndex);
-  };
+    const rotatedImages = [...cardSliderImages.slice(1), cardSliderImages[0]]
+    const newIndex = (currentSlide + 1) % cardSliderImages.length
 
-  console.log("currenet slide", currentSlide);
+    setCurrentSlide(newIndex)
+    setCardSliderImages(rotatedImages)
+  }
+
+  console.log('current slide', currentSlide)
 
   return (
     <Container>
@@ -63,23 +73,23 @@ const CardSlider: React.FC<CardSliderProps> = ({
 
           <SliderButtons>
             <SliderButton onClick={previousSlide}>
-              <SliderControlImage src={leftArrow} alt="previous" />
+              <SliderControlImage src={leftArrow} alt='previous' />
             </SliderButton>
 
             <SliderButton onClick={nextSlide}>
-              <SliderControlImage src={rightArrow} alt="next" />
+              <SliderControlImage src={rightArrow} alt='next' />
             </SliderButton>
           </SliderButtons>
         </SliderCaptionWrapper>
 
         <SliderCardsWrapper
           style={{
-            transform: `translateX(-${currentSlide * 200}%)`,
-            transition: "transform 0.5s ease",
+            transform: `translateX(-${currentSlide * 10}%)`,
+            transition: 'transform 0.5s ease-in-out',
             zIndex: 1,
           }}
         >
-          {slideImages.map((slide, index) => (
+          {cardSliderImages.map((slide, index) => (
             <SingleCard
               key={index}
               slideNo={currentSlide}
@@ -88,13 +98,12 @@ const CardSlider: React.FC<CardSliderProps> = ({
               userName={slide.userName}
               textTitle={slide.textTitle}
               description={slide.description}
-              className="slider-image"
             />
           ))}
         </SliderCardsWrapper>
       </CardSliderWrapper>
     </Container>
-  );
-};
+  )
+}
 
-export default CardSlider;
+export default CardSlider
