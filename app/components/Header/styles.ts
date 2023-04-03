@@ -18,17 +18,34 @@ export const HeaderWrapper = styled.div`
   padding: 0 1em;
   justify-content: space-between;
   border-radius: 0 0 15px 15px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5em;
+    border-radius: 0;
+  }
 `
 
 export const HeaderTitle = styled.h3`
   color: #414978;
   cursor: pointer;
+
+  @media (max-width: 768px) {
+    font-size: 1.5em;
+    margin: 0.5em 0;
+  }
 `
 
 export const NavBar = styled.div`
   display: flex;
   flex-direction: row;
   cursor: pointer;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `
 
 // nav link lists
@@ -39,6 +56,12 @@ export const NavListWrapper = styled.ul`
   justify-content: flex-end;
   gap: 2em;
   width: 15em;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+    width: 100%;
+    margin: 1em 0 0;
+  }
 `
 
 export const NavList = styled.li`
@@ -51,12 +74,21 @@ export const NavLinks = styled(Link)`
   width: 5em;
   margin: 0 auto;
   text-align: center;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0.5em 0;
+    text-align: left;
+  }
 `
 
 // Login and sign up buttons
 export const NavButtonsWrapper = styled.div`
   display: flex;
   margin: 0em 1em;
+
+  @media (max-width: 768px) {
+  }
 `
 
 export const NavButtons = styled.button<ButonProps>`
@@ -75,6 +107,12 @@ export const NavButtons = styled.button<ButonProps>`
   p {
     font-size: small;
     width: 5em;
+  }
+
+  @media (max-width: 768px) {
+    width: 5em;
+    padding: 0.5em;
+    font-size: 0.8rem;
   }
 
   :hover {
@@ -116,6 +154,10 @@ export const SearchInput = styled.input`
   width: 25em;
   background-color: transparent;
   padding: 0 10px;
+
+  @media (max-width: 768px) {
+    width: 20em;
+  }
 `
 
 export const Divider = styled.div`
@@ -157,6 +199,11 @@ export const DropdownMenu = styled.ul`
   padding: 0;
   list-style: none;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    top: 6.6em;
+    left: 60vw;
+  }
 `
 
 export const DropdownMenuItem = styled.li`
