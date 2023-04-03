@@ -6,6 +6,9 @@ export const Container = styled.div`
   overflow-x: visible;
   position: relative;
   margin: 2em 0;
+
+  @media (max-width: 768px) {
+  }
 `
 
 export const CardSliderWrapper = styled.div`
@@ -14,6 +17,11 @@ export const CardSliderWrapper = styled.div`
   background-color: white;
   gap: 1em;
   align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
 `
 
 export const SliderCaptionWrapper = styled.div`
@@ -24,6 +32,13 @@ export const SliderCaptionWrapper = styled.div`
   position: absolute;
   z-index: 10;
   display: block;
+
+  @media (max-width: 768px) {
+    position: static;
+    z-index: 0;
+    margin-left: 0;
+    margin-top: 2em;
+  }
 `
 
 export const SliderHeader = styled.h2`
@@ -92,6 +107,11 @@ export const SliderCardsWrapper = styled.div`
   justify-content: flex-start;
   width: 15em;
   height: 35em;
+
+  @media (max-width: 768px) {
+    width: 5em;
+    margin-left: 0;
+  }
 `
 
 export const SliderText = styled.p`
