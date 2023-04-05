@@ -1,26 +1,6 @@
-import React, { FC } from 'react';
-import * as Styles from './styles';
-
-export interface BadgeProps {
-  /* Badge value */
-  value?: string;
-  /* Badge margin */
-  margin?: string;
-  /* Badge height */
-  height?: string;
-  /* Badge padding */
-  padding?: string;
-  /* Badge additional class names */
-  className?: string;
-  /* Badge background color */
-  backgroundColor?: string;
-  /* Badge text transform */
-  textTransform?: 'uppercase' | 'lowercase' | 'capitalize' | 'none' | string;
-  /* Badge cursor pointer */
-  isCursor?: boolean;
-  /** Optional click handler */
-  onClick?: (event?: React.MouseEvent<Element, MouseEvent>) => void;
-}
+import React, { FC } from "react";
+import { BadgeProps } from "./interface";
+import * as Styles from "./styles";
 
 export const Badge: FC<BadgeProps> = ({
   value,
@@ -29,7 +9,7 @@ export const Badge: FC<BadgeProps> = ({
   height,
   backgroundColor,
   className,
-  textTransform = 'uppercase',
+  textTransform = "uppercase",
   isCursor = false,
   onClick,
   ...props
@@ -46,7 +26,6 @@ export const Badge: FC<BadgeProps> = ({
       isCursor={isCursor}
       {...props}
     >
-  
       {value}
     </Styles.Wrapper>
   );
